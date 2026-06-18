@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zovi — Your group feed. Powered by your friends.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --midnight:#0E0A2E;--purple:#6C3FD4;--purple-light:#8B5CF6;
+  --coral:#FF6B6B;--coral-light:#FF8E8E;--white:#FFFFFF;
+  --gray:#A0A0B8;--card-bg:#1A1540;--border:rgba(108,63,212,0.25);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--midnight);color:var(--white);overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(14,10,46,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+.logo-mark{width:36px;height:36px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;position:relative}
+.logo-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--coral);border-radius:50%}
+.nav-cta{background:var(--coral);color:var(--white);padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.1s}
+.nav-cta:hover{background:var(--coral-light);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(108,63,212,0.18) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,63,212,0.2);border:1px solid var(--border);border-radius:100px;padding:8px 18px;margin-bottom:32px;font-size:13px;font-weight:500;color:var(--purple-light);letter-spacing:0.05em}
+.badge-dot{width:6px;height:6px;background:var(--coral);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px;max-width:800px}
+.hero h1 span{color:var(--coral)}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--gray);max-width:560px;margin-bottom:48px;line-height:1.7}
+.hero-sub strong{color:var(--white);font-weight:600}
+
+/* WAITLIST FORM */
+#waitlist-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;width:100%;max-width:480px}
+#waitlist-form input[type=email]{flex:1;min-width:220px;padding:14px 20px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.06);color:var(--white);font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
+#waitlist-form input[type=email]::placeholder{color:var(--gray)}
+#waitlist-form input[type=email]:focus{border-color:var(--purple-light)}
+#waitlist-form button{padding:14px 28px;border-radius:10px;background:var(--coral);color:var(--white);font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s,transform 0.1s;white-space:nowrap}
+#waitlist-form button:hover{background:var(--coral-light);transform:translateY(-1px)}
+#waitlist-form button:disabled{opacity:0.6;cursor:not-allowed}
+.form-note{font-size:13px;color:var(--gray);margin-bottom:48px}
+#form-success{display:none;background:rgba(108,63,212,0.2);border:1px solid #6C3FD4;border-radius:12px;padding:16px 28px;font-weight:600;font-size:16px;color:#fff;margin-bottom:48px;text-align:center}
+#form-error{display:none;background:rgba(255,107,107,0.15);border:1px solid var(--coral);border-radius:12px;padding:12px 20px;font-size:14px;color:var(--coral);margin-bottom:12px;text-align:center}
+
+/* HOW STRIP */
+.how-strip{display:flex;gap:0;background:rgba(108,63,212,0.08);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:700px;width:100%;margin-bottom:80px}
+.how-step{flex:1;padding:20px 16px;text-align:center;border-right:1px solid var(--border);position:relative}
+.how-step:last-child{border-right:none}
+.how-icon{font-size:24px;margin-bottom:8px}
+.how-label{font-size:12px;font-weight:600;color:var(--gray);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px}
+.how-desc{font-size:13px;color:var(--white);line-height:1.4}
+
+/* SECTION */
+.section-label{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;text-align:center;margin-bottom:12px;line-height:1.2}
+.section-desc{color:var(--gray);text-align:center;max-width:520px;margin-bottom:60px;font-size:16px;line-height:1.7}
+
+/* MOCKUP */
+.mockup-section{padding:80px 24px;display:flex;flex-direction:column;align-items:center}
+.phones{display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;justify-content:center}
+.phone{width:200px;background:var(--card-bg);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.4);transition:transform 0.3s}
+.phone:hover{transform:translateY(-8px)}
+.phone.center{transform:scale(1.08)}
+.phone.center:hover{transform:scale(1.08) translateY(-8px)}
+.phone-notch{background:#000;height:28px;display:flex;align-items:center;justify-content:center}
+.notch-bar{width:80px;height:14px;background:#111;border-radius:10px}
+.phone-header{padding:12px 14px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.phone-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
+.phone-sub{font-size:10px;color:var(--gray)}
+.phone-avatar{width:28px;height:28px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.feed-card{margin:10px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);overflow:hidden}
+.feed-thumb{height:80px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.feed-meta{padding:8px 10px}
+.feed-from{font-size:9px;color:var(--coral);font-weight:600;margin-bottom:2px}
+.feed-desc{font-size:10px;color:var(--white);line-height:1.3}
+.feed-actions{display:flex;gap:12px;padding:6px 10px 8px;border-top:1px solid var(--border)}
+.feed-action{font-size:9px;color:var(--gray)}
+.phone-label{text-align:center;padding:8px;font-size:10px;font-weight:600;color:var(--purple-light);letter-spacing:0.06em;text-transform:uppercase;border-top:1px solid var(--border)}
+.private-thread{margin:8px;border-radius:10px;background:rgba(108,63,212,0.15);border:1px solid var(--border);padding:8px}
+.thread-header{font-size:9px;font-weight:700;color:var(--purple-light);margin-bottom:8px}
+.thread-msg{background:rgba(255,255,255,0.06);border-radius:8px;padding:6px 8px;margin-bottom:5px}
+.thread-user{font-size:8px;color:var(--coral);font-weight:600}
+.thread-text{font-size:9px;color:var(--white);line-height:1.3}
+
+/* FEATURES */
+.features-section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.feature-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color 0.2s,transform 0.2s}
+.feature-card:hover{border-color:var(--purple);transform:translateY(-4px)}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:rgba(108,63,212,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.feature-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px}
+.feature-desc{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* FOUNDING */
+.founding-section{padding:80px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.founding-outer{max-width:700px;width:100%}
+.math-compare{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;width:100%}
+.math-box{flex:1;min-width:160px;border-radius:16px;padding:20px;text-align:center}
+.math-box.regular{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1)}
+.math-box.founder{background:linear-gradient(135deg,rgba(108,63,212,0.3),rgba(255,107,107,0.15));border:1px solid var(--purple);position:relative}
+.math-vs{display:flex;align-items:center;font-size:28px;color:var(--coral);font-weight:800}
+.founder-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--coral);color:white;font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;letter-spacing:0.06em}
+.founding-card{background:linear-gradient(135deg,rgba(108,63,212,0.2) 0%,rgba(255,107,107,0.08) 100%);border:1px solid var(--purple);border-radius:24px;padding:40px;width:100%;position:relative;overflow:hidden}
+.perks-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.perk-box{background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;text-align:left}
+.perk-emoji{font-size:20px;margin-bottom:8px}
+.perk-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px}
+.perk-desc{font-size:12px;color:var(--gray);line-height:1.5}
+.warning-box{background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);border-radius:12px;padding:16px;margin-bottom:24px;text-align:left}
+.slots-bar{height:6px;background:rgba(255,255,255,0.1);border-radius:100px;margin:8px 0;overflow:hidden}
+.slots-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--coral));border-radius:100px}
+.founding-btn{display:block;width:100%;padding:18px;border-radius:12px;background:var(--coral);color:var(--white);font-size:17px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s,transform 0.1s;text-decoration:none;text-align:center}
+.founding-btn:hover{background:var(--coral-light);transform:translateY(-2px)}
+
+/* MARQUEE */
+.marquee-section{padding:40px 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.marquee-track{display:flex;gap:48px;animation:marquee 28s linear infinite;white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--gray);letter-spacing:0.04em;flex-shrink:0}
+.marquee-item span{color:var(--coral);margin-right:48px}
+
+/* STATS BANNER */
+.stats-banner{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;padding:48px 24px;border-bottom:1px solid var(--border)}
+.stat-item{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--white)}
+.stat-label{font-size:13px;color:var(--gray);margin-top:4px}
+
+/* FOOTER */
+footer{padding:40px 24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;max-width:1100px;margin:0 auto}
+.footer-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--white)}
+.footer-note{font-size:13px;color:var(--gray)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#1A1540;border:1px solid var(--purple);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--white);z-index:999;transform:translateY(100px);opacity:0;transition:all 0.3s;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* COUNTER */
+.live-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.3);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--coral);margin-bottom:20px}
+.counter-dot{width:6px;height:6px;background:var(--coral);border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+
+@media(max-width:640px){
+  nav{padding:14px 20px}
+  .phone{width:160px}
+  .phone.center{transform:scale(1.05)}
+  .perks-grid{grid-template-columns:1fr}
+  .founding-card{padding:24px}
+  .math-compare{flex-direction:column;align-items:center}
+  .math-vs{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- CONFIG — update these numbers manually -->
+<script>
+const SLOTS_TOTAL = 500;
+const SLOTS_CLAIMED = 0;
+const WAITLIST_COUNT = 0;
+const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
+</script>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">Z<div class="logo-dot"></div></div>
+    Zovi
+  </a>
+  <a href="#founding" class="nav-cta">Get founding access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><div class="badge-dot"></div>Free to download &middot; Pro pass available</div>
+  <h1>Your group feed.<br><span>Powered by your friends.</span><br>Zero effort required.</h1>
+  <p class="hero-sub">
+    <strong>You like it. Your crew sees it. Their finds come back to you.</strong><br>
+    That's Zovi — a private feed built automatically from what everyone in your group loves. No sharing required.
+  </p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:6px;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.3);border-radius:100px;padding:6px 14px;"><span style="font-size:13px;color:#1D9E75;font-weight:600;">✓ Free to download</span></div>
+    <div style="display:flex;align-items:center;gap:6px;background:rgba(108,63,212,0.15);border:1px solid rgba(108,63,212,0.3);border-radius:100px;padding:6px 14px;"><span style="font-size:13px;color:#8B5CF6;font-weight:600;">⚡ Pro pass from $4.99/mo</span></div>
+    <div style="display:flex;align-items:center;gap:6px;background:rgba(255,107,107,0.15);border:1px solid rgba(255,107,107,0.3);border-radius:100px;padding:6px 14px;"><span style="font-size:13px;color:#FF6B6B;font-weight:600;">★ Founding member $49 lifetime</span></div>
+  </div>
+
+  <div class="live-counter">
+    <div class="counter-dot"></div>
+    <span id="hero-counter">47 people on the waitlist</span>
+  </div>
+
+  <form id="waitlist-form" action="https://formspree.io/f/mdavbyqk" method="POST">
+    <input type="email" name="email" placeholder="Enter your email address" required>
+    <input type="hidden" name="source" value="hero-waitlist">
+    <input type="hidden" name="type" value="waitlist">
+    <button type="submit" id="waitlist-btn">Join the waitlist</button>
+  </form>
+  <div id="form-error">Something went wrong. Please try again or email hello@thezovi.com</div>
+  <div id="form-success">You're on the list! We'll be in touch when Zovi launches.</div>
+  <p class="form-note">Free to join. No spam. Ever.</p>
+
+  <div class="how-strip">
+    <div class="how-step">
+      <div class="how-icon">❤️</div>
+      <div class="how-label">You</div>
+      <div class="how-desc">Like and save things you love</div>
+    </div>
+    <div class="how-step">
+      <div class="how-icon">⚡</div>
+      <div class="how-label">Zovi</div>
+      <div class="how-desc">Builds your group feed overnight</div>
+    </div>
+    <div class="how-step">
+      <div class="how-icon">👥</div>
+      <div class="how-label">Your crew</div>
+      <div class="how-desc">Wakes up to a shared feed from everyone</div>
+    </div>
+    <div class="how-step">
+      <div class="how-icon">🔥</div>
+      <div class="how-label">Discovery</div>
+      <div class="how-desc">You find things your friends loved before anyone else</div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO FEEDS EXPLAINER -->
+<section style="padding:70px 24px 90px;max-width:900px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="section-label">How Zovi actually works</div>
+    <h2 class="section-title">Two feeds. One simple idea.</h2>
+    <p style="color:var(--gray);max-width:560px;margin:0 auto;font-size:16px;line-height:1.7;">It starts just like the apps you already use. Then it becomes something they can't do.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);border-radius:24px;overflow:hidden;background:var(--card-bg);">
+
+    <!-- STEP 1: PERSONAL FEED -->
+    <div style="padding:36px 36px 32px;border-bottom:1px solid var(--border);position:relative;">
+      <div style="display:flex;align-items:flex-start;gap:20px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(108,63,212,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--purple-light);flex-shrink:0;">1</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);">Your Personal Feed</h3>
+            <span style="font-size:11px;color:var(--gray);background:rgba(255,255,255,0.06);padding:3px 10px;border-radius:100px;border:1px solid var(--borderLight);">Just like Instagram or TikTok</span>
+          </div>
+          <p style="color:var(--gray);font-size:15px;line-height:1.7;">This part feels familiar. Like, save, and import content from TikTok, Instagram, and YouTube — exactly like you already do. Or post your own — photos, videos, a quick tweet-style thought, whatever's on your mind. Keep it private and it just builds your taste profile, or go public and let people follow you. Either way, it's the foundation everything else is built on.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW -->
+    <div style="text-align:center;padding:0;background:rgba(108,63,212,0.06);">
+      <div style="display:inline-block;padding:14px 0;font-size:13px;color:var(--purple-light);font-weight:600;">↓ &nbsp; This is where Zovi stops looking like every other app &nbsp; ↓</div>
+    </div>
+
+    <!-- STEP 2: GROUP FEED -->
+    <div style="padding:36px 36px 32px;position:relative;">
+      <div style="display:flex;align-items:flex-start;gap:20px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,107,107,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--coral);flex-shrink:0;">2</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);">Your Group Feed</h3>
+            <span style="font-size:11px;color:var(--coral);background:rgba(255,107,107,0.12);padding:3px 10px;border-radius:100px;border:1px solid rgba(255,107,107,0.25);">Nothing else does this</span>
+          </div>
+          <p style="color:var(--gray);font-size:15px;line-height:1.7;">Create or join a group with your real friends — your crew, your family, your golf buddies, whoever. Every night, Zovi combines everyone's personal feed in that group into one shared feed. <strong style="color:var(--white);">Your golf-obsessed friend's saves show up next to your sister's recipe finds</strong> — all in one feed, automatically, with zero effort from anyone. You never had to send a single link.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE POINT -->
+  <div style="text-align:center;margin-top:36px;max-width:600px;margin-left:auto;margin-right:auto;">
+    <p style="color:var(--gray);font-size:15px;line-height:1.8;">
+      A personal feed alone is just another app. <strong style="color:var(--white);">A group feed built from the people you actually trust is something else entirely</strong> — a wider lens into what your crew loves, without anyone lifting a finger.
+    </p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Join my Zovi <span>✦</span></div>
+    <div class="marquee-item">Get in the Zovi <span>✦</span></div>
+    <div class="marquee-item">Your crew found it first <span>✦</span></div>
+    <div class="marquee-item">Zero effort. All of you. <span>✦</span></div>
+    <div class="marquee-item">Your Zovi just dropped <span>✦</span></div>
+    <div class="marquee-item">Private. Personal. Powerful. <span>✦</span></div>
+    <div class="marquee-item">Join my Zovi <span>✦</span></div>
+    <div class="marquee-item">Get in the Zovi <span>✦</span></div>
+    <div class="marquee-item">Your crew found it first <span>✦</span></div>
+    <div class="marquee-item">Zero effort. All of you. <span>✦</span></div>
+    <div class="marquee-item">Your Zovi just dropped <span>✦</span></div>
+    <div class="marquee-item">Private. Personal. Powerful. <span>✦</span></div>
+  </div>
+</div>
+
+<!-- PHONE MOCKUPS -->
+<section class="mockup-section">
+  <div class="section-label">The product</div>
+  <h2 class="section-title">Three screens. One experience.</h2>
+  <p class="section-desc">Your personal feed builds your taste profile. Your group feed assembles automatically every day. The private thread is where your crew reacts — just for you.</p>
+  <div class="phones">
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-bar"></div></div>
+      <div class="phone-header"><div><div class="phone-title">My Feed</div><div class="phone-sub">Building your taste profile</div></div><div class="phone-avatar">T</div></div>
+      <div class="feed-card"><div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">⛳</div><div class="feed-meta"><div class="feed-from">SAVED · GOLF</div><div class="feed-desc">The most insane bunker shot you'll ever see</div></div><div class="feed-actions"><span class="feed-action">❤️ 12k</span><span class="feed-action">💬 341</span></div></div>
+      <div class="feed-card"><div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#3d1a1a)">🥊</div><div class="feed-meta"><div class="feed-from">SAVED · BOXING</div><div class="feed-desc">Footwork drill that changed everything</div></div><div class="feed-actions"><span class="feed-action">❤️ 8.2k</span><span class="feed-action">💬 89</span></div></div>
+      <div class="phone-label">Personal Feed</div>
+    </div>
+    <div class="phone center">
+      <div class="phone-notch"><div class="notch-bar"></div></div>
+      <div class="phone-header"><div><div class="phone-title">Sunday Crew 🔥</div><div class="phone-sub">5 members · Updated today</div></div></div>
+      <div class="feed-card"><div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">⛳</div><div class="feed-meta"><div class="feed-from">FROM JORDAN'S FEED · GOLF</div><div class="feed-desc">Insane 40ft putt at Augusta</div></div><div class="feed-actions"><span class="feed-action">🔥 14</span><span class="feed-action">💬 Group only</span></div></div>
+      <div class="feed-card"><div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#1a3d1a)">🍕</div><div class="feed-meta"><div class="feed-from">FROM MARCUS'S FEED · FOOD</div><div class="feed-desc">This Detroit-style pizza recipe 🤯</div></div><div class="feed-actions"><span class="feed-action">❤️ 9</span><span class="feed-action">💬 Group only</span></div></div>
+      <div class="phone-label">Group Feed</div>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-bar"></div></div>
+      <div class="phone-header"><div><div class="phone-title">Sunday Crew</div><div class="phone-sub">Private thread 🔒</div></div><div style="font-size:10px;color:var(--coral);font-weight:700;">ONLY YOU 5</div></div>
+      <div class="private-thread">
+        <div class="thread-header">🔒 Group thread — Sunday Crew only</div>
+        <div class="thread-msg"><div class="thread-user">Marcus</div><div class="thread-text">bro that putt 😭 we need to go to Augusta</div></div>
+        <div class="thread-msg"><div class="thread-user">Jordan</div><div class="thread-text">making that pizza this weekend, who's in?</div></div>
+        <div class="thread-msg"><div class="thread-user">Tyler</div><div class="thread-text">I'm in 🙋 bring the good cheese</div></div>
+      </div>
+      <div class="phone-label">Private Thread</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div style="text-align:center;margin-bottom:52px;">
+    <div class="section-label">Why Zovi</div>
+    <h2 class="section-title">Built different. On purpose.</h2>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.25);border-radius:100px;padding:8px 20px;margin-top:12px;">
+      <span style="font-size:14px;color:#1D9E75;font-weight:600;">✓ Core features are completely free — Pro unlocks more</span>
+    </div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Zero effort sharing</div><div class="feature-desc">No one has to forward, share, or decide what's worth sending. Just live your feed — Zovi does the rest.</div></div>
+    <div class="feature-card"><div class="feature-icon">🔒</div><div class="feature-title">Private by design</div><div class="feature-desc">Every group is invite-only. Your group thread is invisible to anyone outside. No strangers, no algorithm, no ads.</div></div>
+    <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title">"From Jordan's feed" labels</div><div class="feature-desc">Every post in your group feed shows exactly which member of your group it came from. Never a mystery, never an algorithm — just your people.</div></div>
+    <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Your crew found it first</div><div class="feature-desc">When content your group discovered blows up publicly, Zovi tells you. You were early. Your crew called it.</div></div>
+    <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">Import from anywhere</div><div class="feature-desc">Share a TikTok, Instagram, or YouTube link to Zovi and it silently feeds your taste profile. No clutter. Just signal.</div></div>
+    <div class="feature-card"><div class="feature-icon">✍️</div><div class="feature-title">Or post it yourself</div><div class="feature-desc">Photos, videos, or a quick tweet-style thought — share your own original content straight to your feed, not just things you found elsewhere.</div></div>
+    <div class="feature-card"><div class="feature-icon">🔥</div><div class="feature-title">Groups that stay alive</div><div class="feature-desc">Streaks, weekly recaps, and the Group Boost keep your crew coming back. The more you engage, the richer your feed gets.</div></div>
+    <div class="feature-card"><div class="feature-icon">👤</div><div class="feature-title">Your profile, your rules</div><div class="feature-desc">Go private and only your groups see you, or go public — post, follow, get followed, and let your best stuff find an audience beyond your group. Just like the apps you already use.</div></div>
+    <div class="feature-card"><div class="feature-icon">🧭</div><div class="feature-title">Smarter suggestions</div><div class="feature-desc">Zovi surfaces people worth following based on shared interests, mutual groups, and overlapping connections — never random, always relevant.</div></div>
+  </div>
+</section>
+
+<!-- FREE VS PRO -->
+<section style="padding:60px 24px;max-width:700px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:32px;">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Free forever.<br>Pro when you're ready.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="background:#1A1540;border:1px solid rgba(108,63,212,0.25);border-radius:20px;padding:24px;">
+      <div style="font-size:13px;font-weight:700;color:#A0A0B8;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">Free</div>
+      <div style="font-size:32px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">$0</div>
+      <div style="font-size:13px;color:#A0A0B8;margin-bottom:20px;">forever</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:13px;color:#FFFFFF;">✓ Personal feed</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Group feed (3 posts/member)</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Private crew thread</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Up to 15 groups</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Public discovery groups</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Weekly recap</div>
+        <div style="font-size:13px;color:#FFFFFF;">✓ Streak rewards</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(108,63,212,0.25),rgba(255,107,107,0.1));border:1px solid #6C3FD4;border-radius:20px;padding:24px;position:relative;">
+      <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#FF6B6B;color:white;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px;white-space:nowrap;">MOST POPULAR</div>
+      <div style="font-size:13px;font-weight:700;color:#8B5CF6;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">Pro</div>
+      <div style="font-size:32px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">$4.99<span style="font-size:16px;color:#A0A0B8;">/mo</span></div>
+      <div style="font-size:13px;color:#A0A0B8;margin-bottom:20px;">or $39.99/year</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:13px;color:#FFFFFF;">✓ Everything in Free</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ Unlimited group feed</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ Unlimited groups</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ Monthly Group Boost</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ The Zovi Mark</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ Full weekly recap</div>
+        <div style="font-size:13px;color:#FFFFFF;">⚡ Monthly taste report</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING MEMBER -->
+<section class="founding-section" id="founding">
+  <div class="founding-outer">
+    <div class="section-label">500 slots. No exceptions.</div>
+    <h2 class="section-title">Be a founding member.</h2>
+    <p style="color:var(--gray);max-width:560px;font-size:17px;line-height:1.7;margin:0 auto 20px;">
+      Every algorithm on the internet keeps you in a loop — more of what you already like, narrower and narrower until your feed is just an echo of yourself.
+      Zovi breaks that loop. When your group feed is built from the real tastes of the people you trust, you discover things you never would have found on your own.
+      That golf video your friend saved. That recipe someone stumbled on at midnight. That song nobody's heard yet.
+      <strong style="color:var(--white);">A wider lens. A more trusted source. Your people — not an algorithm — showing you what's worth your time.</strong>
+    </p>
+    <p style="color:var(--gray);font-size:14px;margin:0 auto 32px;">— Terry Medford III, Founder of Zovi</p>
+
+
+    <div class="math-compare">
+      <div class="math-box regular">
+        <div style="font-size:12px;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Everyone else pays</div>
+        <div style="font-size:36px;font-weight:800;font-family:'Syne',sans-serif;color:var(--gray);text-decoration:line-through;">$4.99<span style="font-size:16px;">/mo</span></div>
+        <div style="font-size:13px;color:var(--gray);margin-top:8px;">$59.88 per year<br>forever</div>
+      </div>
+      <div class="math-vs">vs</div>
+      <div class="math-box founder">
+        <div class="founder-tag">FOUNDING MEMBER</div>
+        <div style="font-size:12px;color:var(--coral);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;margin-top:8px;">You pay once</div>
+        <div style="font-size:36px;font-weight:800;font-family:'Syne',sans-serif;color:var(--white);">$49<span style="font-size:16px;color:var(--gray);"> forever</span></div>
+        <div style="font-size:13px;color:var(--gray);margin-top:8px;">Break-even in<br><strong style="color:var(--white);">10 months</strong></div>
+      </div>
+    </div>
+
+    <div class="founding-card">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="width:48px;height:48px;border-radius:12px;background:var(--purple);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:22px;font-weight:800;position:relative;flex-shrink:0;">Z<div style="position:absolute;top:6px;right:6px;width:10px;height:10px;background:var(--coral);border-radius:50%;"></div></div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;">Zovi Founding Member</div><div style="font-size:14px;color:var(--gray);margin-top:2px;">One time. Lifetime access. Badge that never expires.</div></div>
+        <div style="margin-left:auto;text-align:right;"><div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;">$49</div><div style="font-size:12px;color:var(--coral);">one-time</div></div>
+      </div>
+
+      <div class="perks-grid">
+        <div class="perk-box"><div class="perk-emoji">♾️</div><div class="perk-title">Lifetime Pro — free</div><div class="perk-desc">Never pay $4.99/month. Ever. Even if the price goes up, you're locked in at $0.</div></div>
+        <div class="perk-box"><div class="perk-emoji">🔴</div><div class="perk-title">The Zovi Mark</div><div class="perk-desc">A permanent coral dot next to your name — everywhere, forever. Gone after 500 slots.</div></div>
+        <div class="perk-box"><div class="perk-emoji">⚡</div><div class="perk-title">Monthly Group Boost</div><div class="perk-desc">Upgrade your whole crew to unlimited feed for 30 days — every single month.</div></div>
+        <div class="perk-box"><div class="perk-emoji">🎯</div><div class="perk-title">Shape what gets built</div><div class="perk-desc">Direct line to the founding team. Your feedback actually ships.</div></div>
+        <div class="perk-box"><div class="perk-emoji">🏆</div><div class="perk-title">Founding Member badge</div><div class="perk-desc">Visible on your profile forever. When Zovi has 100,000 users, you were one of the first 500.</div></div>
+        <div class="perk-box"><div class="perk-emoji">🚀</div><div class="perk-title">First in at launch</div><div class="perk-desc">No waitlist position. Day one access, guaranteed. Every new feature early.</div></div>
+      </div>
+
+      <div class="warning-box">
+        <div style="font-size:13px;font-weight:600;color:var(--coral);margin-bottom:6px;">What happens after 500 slots?</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.6;">The founding member tier disappears permanently. No exceptions. Pro becomes $4.99/month. The badge becomes impossible to get at any price. The 500 people who moved early shaped everything that came after.</div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div style="font-size:13px;color:var(--gray);" id="slots-label">Loading...</div>
+        <div style="font-size:13px;font-weight:600;color:var(--coral);" id="slots-pct">—</div>
+      </div>
+      <div class="slots-bar"><div class="slots-fill" id="slots-fill" style="width:0%;transition:width 1s ease;"></div></div>
+      <div style="font-size:12px;color:var(--gray);margin-bottom:24px;" id="slots-remaining">Loading slot count...</div>
+
+      <a href="#" id="founding-btn" class="founding-btn">Claim my founding member slot — $49 →</a>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--gray);">Secure checkout via Stripe · One-time payment · No subscription</div>
+
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;">
+        <div style="display:flex;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--purple);border:2px solid var(--midnight);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-right:-8px;">J</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--coral);border:2px solid var(--midnight);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-right:-8px;color:white;">M</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:#3d1a6e;border:2px solid var(--midnight);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">T</div>
+        </div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.4;"><strong id="social-proof-num" style="color:var(--white);">20 people</strong> have already claimed their slot.<br><span style="color:var(--coral);" id="social-proof-remaining">480 remaining.</span></div>
+      </div>
+    </div>
+
+    <div style="max-width:480px;text-align:center;margin:28px auto 0;">
+      <p style="font-size:14px;color:var(--gray);line-height:1.7;">
+        Not sure yet? Join the free waitlist above.<br>
+        <strong style="color:var(--white);">The $49 slot won't be available after launch.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER WAITLIST -->
+<section style="padding:60px 24px;text-align:center;border-top:1px solid var(--border);">
+  <h2 style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;margin-bottom:12px;">Still on the fence?</h2>
+  <p style="color:var(--gray);font-size:16px;margin-bottom:32px;">Join the free waitlist. Be first to know when we launch.</p>
+  <form id="footer-waitlist-form" action="https://formspree.io/f/mdavbyqk" method="POST" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:440px;margin:0 auto;">
+    <input type="email" name="email" placeholder="Your email" required style="flex:1;min-width:200px;padding:14px 20px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.06);color:var(--white);font-size:15px;font-family:'Inter',sans-serif;outline:none;">
+    <input type="hidden" name="source" value="footer-waitlist">
+    <input type="hidden" name="type" value="waitlist">
+    <button type="submit" style="padding:14px 24px;border-radius:10px;background:var(--purple);color:var(--white);font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;">Join free</button>
+  </form>
+  <div id="footer-success" style="display:none;margin-top:16px;font-size:15px;color:var(--purple-light);font-weight:600;">You're on the list! We'll be in touch.</div>
+</section>
+
+<footer>
+  <div class="footer-logo">Zovi</div>
+  <div class="footer-note">© 2026 Circl Technologies LLC · thezovi.com · hello@thezovi.com</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG (update these numbers manually) ──
+const CONFIG = {
+  slotsClaimed: SLOTS_CLAIMED,
+  slotsTotal: SLOTS_TOTAL,
+  waitlistCount: WAITLIST_COUNT,
+  stripeLink: STRIPE_LINK
+};
+
+// ── INIT ──
+function init() {
+  const remaining = CONFIG.slotsTotal - CONFIG.slotsClaimed;
+  const pct = Math.round((CONFIG.slotsClaimed / CONFIG.slotsTotal) * 100);
+  document.getElementById('slots-label').textContent = CONFIG.slotsClaimed + ' of ' + CONFIG.slotsTotal + ' slots claimed';
+  document.getElementById('slots-pct').textContent = pct + '% claimed';
+  document.getElementById('slots-remaining').textContent = remaining + ' slots remaining — once they\'re gone, they\'re gone';
+  document.getElementById('social-proof-num').textContent = CONFIG.slotsClaimed + ' people';
+  document.getElementById('social-proof-remaining').textContent = remaining + ' remaining.';
+  document.getElementById('hero-counter').textContent = CONFIG.waitlistCount + ' people on the waitlist';
+  document.getElementById('founding-btn').href = CONFIG.stripeLink;
+  setTimeout(() => {
+    document.getElementById('slots-fill').style.width = pct + '%';
+  }, 300);
+}
+
+// ── TOAST ──
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = isError ? 'var(--coral)' : 'var(--purple)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ── HERO WAITLIST FORM ──
+document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('waitlist-btn');
+  const errEl = document.getElementById('form-error');
+  const sucEl = document.getElementById('form-success');
+  btn.disabled = true;
+  btn.textContent = 'Joining...';
+  errEl.style.display = 'none';
+  try {
+    const res = await fetch('https://formspree.io/f/mdavbyqk', {
+      method: 'POST',
+      headers: {'Accept': 'application/json'},
+      body: new FormData(this)
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      sucEl.style.display = 'block';
+      showToast('You\'re on the list! We\'ll be in touch.');
+      CONFIG.waitlistCount++;
+      document.getElementById('hero-counter').textContent = CONFIG.waitlistCount + ' people on the waitlist';
+    } else {
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Join the waitlist';
+    }
+  } catch(err) {
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Join the waitlist';
+  }
+});
+
+// ── FOOTER WAITLIST FORM ──
+document.getElementById('footer-waitlist-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const sucEl = document.getElementById('footer-success');
+  const btn = this.querySelector('button');
+  btn.disabled = true;
+  btn.textContent = 'Joining...';
+  try {
+    const res = await fetch('https://formspree.io/f/mdavbyqk', {
+      method: 'POST',
+      headers: {'Accept': 'application/json'},
+      body: new FormData(this)
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      sucEl.style.display = 'block';
+      showToast('You\'re on the list!');
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Join free';
+      showToast('Something went wrong. Try again.', true);
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Join free';
+    showToast('Something went wrong. Try again.', true);
+  }
+});
+
+init();
+</script>
+</body>
+</html>
