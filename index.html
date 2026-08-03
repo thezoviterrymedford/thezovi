@@ -29,7 +29,7 @@ body{font-family:'Inter',sans-serif;background:var(--midnight);color:var(--white
 /* TEXT CLIPPING FIXES */
 h1,h2,h3{line-height:1.25;padding-bottom:0.15em;overflow:visible}
 .feature-title,.perk-title,.founding-card h2{overflow:visible;line-height:1.25}
-.marquee-wrap,.phone,.feed-card{padding-bottom:4px}
+.marquee-wrap,.phone{padding-bottom:4px}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(14,10,46,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -47,9 +47,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative;overflow:visible}
 .hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(108,63,212,0.16) 0%,transparent 65%);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,107,0.06) 0%,transparent 70%);pointer-events:none}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,63,212,0.15);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;font-size:12px;font-weight:600;color:var(--purple-light);letter-spacing:0.06em;text-transform:uppercase;line-height:1.4}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,63,212,0.15);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;font-size:12px;font-weight:600;color:var(--purple-light);letter-spacing:0.06em;text-transform:uppercase;line-height:1.4;animation:eyebrowPulse 2.5s ease-in-out infinite}
 .eyebrow-dot{width:6px;height:6px;background:var(--coral);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+@keyframes eyebrowPulse{0%,100%{opacity:1}50%{opacity:0.8}}
 .hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,6.5vw,78px);font-weight:800;line-height:1.2;padding-bottom:0.2em;overflow:visible;letter-spacing:-0.03em;margin-bottom:20px;max-width:840px}
 .hero h1 em{color:var(--coral);font-style:normal}
 .hero-line{display:block;opacity:0;animation:heroLineIn 0.6s ease forwards}
@@ -114,38 +115,65 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* PHONE MOCKUPS */
 .mockup-section{padding:96px 24px;display:flex;flex-direction:column;align-items:center}
-.phones{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;justify-content:center;margin-top:56px}
-.phone{width:195px;background:var(--card-bg);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,0.5);transition:transform 0.3s}
+.phones{display:flex;gap:22px;align-items:flex-end;flex-wrap:wrap;justify-content:center;margin-top:56px}
+.phone{width:210px;background:var(--midnight);border:1px solid var(--border);border-radius:32px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,0.5);transition:transform 0.3s}
 .phone:hover{transform:translateY(-6px)}
 .phone.center{transform:scale(1.07)}
 .phone.center:hover{transform:scale(1.07) translateY(-8px)}
-.phone-notch{background:#000;height:26px;display:flex;align-items:center;justify-content:center}
-.notch-bar{width:72px;height:12px;background:#111;border-radius:10px}
-.phone-header{padding:11px 13px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
-.phone-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700}
-.phone-sub{font-size:9px;color:var(--gray)}
-.phone-avatar{width:26px;height:26px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-.phone-tabs{display:flex;gap:10px}
-.phone-tab{font-size:9px;font-weight:700;color:var(--gray)}
-.phone-tab.active{color:var(--white);border-bottom:2px solid var(--purple-light);padding-bottom:2px}
-.streak-badge{background:rgba(255,107,107,0.15);color:var(--coral);font-size:7px;font-weight:800;padding:2px 6px;border-radius:100px;margin-left:4px;white-space:nowrap}
-.drop-bar{background:rgba(108,63,212,0.25);color:var(--purple-light);font-size:9px;font-weight:800;letter-spacing:0.06em;text-align:center;padding:7px;text-transform:uppercase;border-bottom:1px solid var(--border)}
-.trend-badge{display:inline-block;margin-top:4px;background:rgba(255,107,107,0.18);border:1px solid rgba(255,107,107,0.35);color:var(--coral);font-size:7px;font-weight:800;padding:3px 6px;border-radius:100px;line-height:1.4}
-.vault-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px}
-.vault-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:9px;padding:8px}
-.vault-card.purple{border-color:var(--purple-light)}
-.vault-name{font-size:9px;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:2px}
-.vault-count{font-size:7px;color:var(--gray);margin-bottom:6px}
-.vault-emojis{font-size:12px;letter-spacing:2px}
-.vault-new{grid-column:1/3;text-align:center;font-size:9px;color:var(--purple-light);font-weight:700;border:1px dashed var(--border);border-radius:9px;padding:8px;line-height:1.4}
-.feed-card{margin:8px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid var(--border);overflow:hidden}
-.feed-thumb{height:72px;display:flex;align-items:center;justify-content:center;font-size:26px}
-.feed-meta{padding:7px 9px}
-.feed-from{font-size:8px;color:var(--coral);font-weight:700;margin-bottom:2px;letter-spacing:0.04em}
-.feed-desc{font-size:9px;color:var(--white);line-height:1.35}
-.feed-actions{display:flex;gap:10px;padding:5px 9px 7px;border-top:1px solid var(--border)}
-.feed-action{font-size:8px;color:var(--gray)}
-.phone-label{text-align:center;padding:7px;font-size:9px;font-weight:700;color:var(--purple-light);letter-spacing:0.07em;text-transform:uppercase;border-top:1px solid var(--border)}
+.phone-status{background:#000;padding:10px 16px 8px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:9px;font-weight:700;color:#fff}
+.phone-status span:first-child{text-align:left}
+.phone-status span:last-child{text-align:right}
+.notch-pill{width:56px;height:11px;background:#111;border-radius:10px;justify-self:center}
+.phone-tabs{display:flex;gap:16px;padding:10px 14px 0}
+.phone-tab{font-size:11px;font-weight:700;color:var(--gray);padding-bottom:8px}
+.phone-tab.active{color:var(--white);border-bottom:2px solid var(--purple-light)}
+.phone-app-header{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--white);padding:10px 14px 6px;display:flex;align-items:center;justify-content:space-between}
+.phone-sub{font-size:10px;color:var(--gray);padding:0 14px 6px}
+.streak-badge{background:rgba(255,107,107,0.18);color:var(--coral);font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;white-space:nowrap}
+.drop-bar{background:rgba(108,63,212,0.28);color:var(--purple-light);font-size:10px;font-weight:800;letter-spacing:0.05em;text-align:center;padding:8px;text-transform:uppercase;margin:2px 8px 6px;border-radius:8px}
+.post-card{margin:0 8px 8px;background:#1A1535;border-radius:12px;padding:11px 12px}
+.trend-banner{background:var(--coral);color:#fff;font-size:9px;font-weight:800;text-align:center;padding:5px 10px;border-radius:12px 12px 0 0;margin:-11px -12px 9px}
+.post-card-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.post-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.post-avatar.ghost{background:rgba(255,255,255,0.12)}
+.post-user{font-size:11px;font-weight:700;color:var(--white)}
+.post-cat{font-size:9px;color:var(--gray);margin-left:auto;flex-shrink:0}
+.post-text{font-size:11px;color:#EDEBFA;line-height:1.55;margin-bottom:9px}
+.post-tags{display:flex;gap:5px;margin-bottom:9px;flex-wrap:wrap}
+.post-tag{font-size:8px;font-weight:700;color:var(--purple-light);background:rgba(108,63,212,0.18);border-radius:100px;padding:3px 8px}
+.reveal-pill{display:inline-block;font-size:9px;font-weight:700;color:var(--gray);background:rgba(255,255,255,0.08);border-radius:100px;padding:3px 9px;margin-bottom:9px}
+.post-actions{display:flex;gap:12px;font-size:9px;color:var(--gray);border-top:1px solid var(--border);padding-top:8px}
+.tab-bar{display:flex;justify-content:space-around;align-items:center;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:100px;margin:8px;padding:9px 4px}
+.tab-bar-item{font-size:14px;color:var(--gray);display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab-bar-item.active{color:var(--white)}
+.tab-bar-dot{width:4px;height:4px;border-radius:50%;background:var(--purple-light)}
+.vault-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px}
+.vault-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:10px}
+.vault-card.full{grid-column:1/3;border-color:var(--purple-light);border-width:1.5px}
+.vault-name{font-size:11px;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:2px}
+.vault-count{font-size:9px;color:var(--gray);margin-bottom:8px}
+.vault-swatches{display:flex;gap:4px}
+.swatch{width:16px;height:16px;border-radius:4px}
+.vault-new{grid-column:1/3;text-align:center;color:var(--purple-light);font-weight:700;border:1.5px dashed var(--purple-light);border-radius:12px;padding:12px;line-height:1.4}
+.vault-new-plus{font-size:20px;display:block;margin-bottom:2px}
+.phone-label{text-align:center;padding:9px;font-size:10px;font-weight:700;color:var(--purple-light);letter-spacing:0.07em;text-transform:uppercase;border-top:1px solid var(--border)}
+
+/* WORKFLOW */
+.workflow-section{padding:96px 24px;display:flex;flex-direction:column;align-items:center}
+.workflow-card{background:#131030;border:1px solid var(--border);border-radius:24px;max-width:880px;width:100%;display:grid;grid-template-columns:1fr 1fr;margin-top:16px}
+.workflow-step{padding:36px 32px}
+.workflow-step:nth-child(1){border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.workflow-step:nth-child(2){border-bottom:1px solid var(--border)}
+.workflow-step:nth-child(3){border-right:1px solid var(--border)}
+.workflow-icon{width:44px;height:44px;border-radius:50%;background:rgba(108,63,212,0.18);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.workflow-kicker{font-size:11px;font-weight:700;color:var(--purple-light);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.workflow-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:10px}
+.workflow-desc{font-size:14px;color:var(--gray);line-height:1.7}
+@media(max-width:700px){
+  .workflow-card{grid-template-columns:1fr}
+  .workflow-step:nth-child(1),.workflow-step:nth-child(2),.workflow-step:nth-child(3){border-right:none;border-bottom:1px solid var(--border)}
+  .workflow-step:nth-child(4){border-right:none;border-bottom:none}
+}
 
 /* FEATURES GRID */
 .features-section{padding:96px 24px;max-width:1080px;margin:0 auto}
@@ -224,6 +252,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .faq-q{font-size:16px;font-weight:600;color:var(--white);margin-bottom:10px;cursor:pointer}
 .faq-a{font-size:14px;color:var(--gray);line-height:1.75}
 .faq-a strong{color:var(--white)}
+.faq-a p+p{margin-top:12px}
 
 /* FINAL CTA */
 .final-cta{padding:96px 24px;text-align:center;max-width:600px;margin:0 auto}
@@ -249,14 +278,14 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;flex-wr
   .how-step:nth-child(odd){border-right:1px solid var(--border)}
   .how-step:last-child,.how-step:nth-last-child(2):nth-child(odd){border-bottom:none}
   .phones{gap:12px}
-  .phone{width:155px}
+  .phone{width:170px}
   .phone.center{transform:scale(1.04)}
   .founding-card{padding:28px 20px}
   .perks-grid{grid-template-columns:1fr}
   footer{padding:28px 20px}
 }
 @media(max-width:400px){
-  .two-feeds,.mockup-section,.features-section,.pro-section,.founding-section,.faq-section,.final-cta{padding:64px 16px}
+  .two-feeds,.mockup-section,.workflow-section,.features-section,.pro-section,.founding-section,.faq-section,.final-cta{padding:64px 16px}
   .hero{padding:120px 16px 56px}
   .founding-card{padding:22px 16px}
 }
@@ -289,7 +318,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Beta launching soon &middot; <span id="hero-eyebrow-count">73</span> people already in</div>
+  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>🚀 Founding member beta — 3 weeks away</div>
   <h1>
     <span class="hero-line" style="animation-delay:0s">Your crew saves things</span>
     <span class="hero-line" style="animation-delay:0.4s">every day.</span>
@@ -428,72 +457,138 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
   <p class="section-desc">Your personal feed. Your group drop. Your private Vault. Three screens, one experience you won't find anywhere else.</p>
   <div class="phones">
     <div class="phone">
-      <div class="phone-notch"><div class="notch-bar"></div></div>
-      <div class="phone-header">
-        <div class="phone-tabs">
-          <span class="phone-tab active">Friends</span>
-          <span class="phone-tab">For You</span>
+      <div class="phone-status"><span>9:41</span><div class="notch-pill"></div><span>●●● WiFi 🔋</span></div>
+      <div class="phone-tabs">
+        <span class="phone-tab active">Friends</span>
+        <span class="phone-tab">For You</span>
+      </div>
+      <div class="phone-app-header">Your Feed</div>
+      <div class="post-card">
+        <div class="post-card-head">
+          <div class="post-avatar" style="background:var(--purple)">J</div>
+          <div class="post-user">jordan_m</div>
+          <div class="post-cat">Golf</div>
         </div>
-        <div class="phone-avatar">T</div>
+        <div class="post-text">That 40ft putt from last weekend was absolutely insane 🤯 #golf</div>
+        <div class="post-tags"><span class="post-tag">golf</span><span class="post-tag">sports</span></div>
+        <div class="post-actions"><span>❤️ 847</span><span>🔖 234</span><span>💬 12</span></div>
       </div>
-      <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">⛳</div>
-        <div class="feed-meta"><div class="feed-from">LIKED · GOLF</div><div class="feed-desc">That 40ft putt from last weekend 🤯</div></div>
-        <div class="feed-actions"><span class="feed-action" style="color:var(--coral)">❤️ Like</span><span class="feed-action">🔖 Save</span><span class="feed-action">💬 2</span></div>
+      <div class="post-card">
+        <div class="post-card-head">
+          <div class="post-avatar" style="background:var(--coral)">M</div>
+          <div class="post-user">marcus_k</div>
+          <div class="post-cat">Food</div>
+        </div>
+        <div class="post-text">Made this Detroit pizza from scratch last night — recipe in my Vault 🍕</div>
+        <div class="post-tags"><span class="post-tag">food</span><span class="post-tag">cooking</span></div>
+        <div class="post-actions"><span>❤️ 1.2k</span><span>🔖 89</span><span>💬 31</span></div>
       </div>
-      <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#1a3d1a)">🍕</div>
-        <div class="feed-meta"><div class="feed-from">SAVED · FOOD</div><div class="feed-desc">Detroit-style pizza — making this weekend</div></div>
-        <div class="feed-actions"><span class="feed-action">❤️</span><span class="feed-action" style="color:var(--purple-light)">🔖 Save</span><span class="feed-action">💬 1</span></div>
+      <div class="tab-bar">
+        <div class="tab-bar-item active">🏠<div class="tab-bar-dot"></div></div>
+        <div class="tab-bar-item">🔍</div>
+        <div class="tab-bar-item">➕</div>
+        <div class="tab-bar-item">👥</div>
+        <div class="tab-bar-item">👤</div>
       </div>
       <div class="phone-label">Personal Feed</div>
     </div>
     <div class="phone center">
-      <div class="phone-notch"><div class="notch-bar"></div></div>
-      <div class="phone-header">
-        <div><div class="phone-title">Sunday Crew 🔥<span class="streak-badge">23 days</span></div><div class="phone-sub">Drop arrived · 5 members</div></div>
-      </div>
-      <div class="drop-bar">Today's Drop ☀️</div>
-      <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2a1f4d);opacity:0.75">👻</div>
-        <div class="feed-meta"><div class="feed-from">SOMEONE IN YOUR CREW · GOLF</div><div class="feed-desc">Someone saved something for you 👀</div></div>
-        <div class="feed-actions"><span class="feed-action" style="color:var(--purple-light);font-weight:700">Reveals in 6h</span></div>
-      </div>
-      <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#1a3d1a)">🍕</div>
-        <div class="feed-meta"><div class="feed-from">FROM JORDAN · FOOD</div><div class="feed-desc">Detroit pizza recipe — everyone needs this</div></div>
-        <div class="feed-actions"><span class="feed-action">🔥 Hot</span><span class="feed-action">💬 3 crew</span></div>
-      </div>
-      <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">🎵</div>
-        <div class="feed-meta">
-          <div class="feed-from">FROM TYLER · MUSIC</div>
-          <div class="feed-desc">This song is about to blow up</div>
-          <div class="trend-badge">🏆 Your crew found this 12 days early</div>
+      <div class="phone-status"><span>9:41</span><div class="notch-pill"></div><span>●●● WiFi 🔋</span></div>
+      <div class="phone-app-header"><span>Sunday Crew</span><span class="streak-badge">🔥 23</span></div>
+      <div class="phone-sub">5 members · Drop arrived ☀️</div>
+      <div class="drop-bar">Today's Drop ☀️ · Jan 15</div>
+      <div class="post-card">
+        <div class="post-card-head">
+          <div class="post-avatar ghost">👻</div>
+          <div class="post-user">Someone in your crew</div>
+          <div class="post-cat">Golf</div>
         </div>
-        <div class="feed-actions"><span class="feed-action">❤️ 6</span><span class="feed-action">💬 1 crew</span></div>
+        <div class="post-text">Someone saved something for you 👀</div>
+        <div class="reveal-pill">Reveals in 4h</div>
+        <div class="post-actions"><span>❤️ 5</span><span>💬 2 crew</span></div>
+      </div>
+      <div class="post-card">
+        <div class="post-card-head">
+          <div class="post-avatar" style="background:var(--purple)">J</div>
+          <div class="post-user">From Jordan's feed</div>
+        </div>
+        <div class="post-text">This Detroit pizza recipe is unreal 🍕</div>
+        <div class="post-tags"><span class="post-tag">food</span></div>
+        <div class="post-actions"><span>❤️ 9</span><span>💬 3 crew</span><span>🔥</span></div>
+      </div>
+      <div class="post-card">
+        <div class="trend-banner">🏆 Your crew found this 12 days early</div>
+        <div class="post-card-head">
+          <div class="post-avatar" style="background:var(--purple-light)">T</div>
+          <div class="post-user">From Tyler's feed</div>
+        </div>
+        <div class="post-text">That viral golf clip everyone's sharing</div>
+        <div class="post-tags"><span class="post-tag">golf</span><span class="post-tag">viral</span></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-bar-item">🏠</div>
+        <div class="tab-bar-item">🔍</div>
+        <div class="tab-bar-item">➕</div>
+        <div class="tab-bar-item active">👥<div class="tab-bar-dot"></div></div>
+        <div class="tab-bar-item">👤</div>
       </div>
       <div class="phone-label">Group Drop ☀️</div>
     </div>
     <div class="phone">
-      <div class="phone-notch"><div class="notch-bar"></div></div>
-      <div class="phone-header">
-        <div><div class="phone-title">The Vault 🔖</div><div class="phone-sub">Private · Only you</div></div>
-      </div>
+      <div class="phone-status"><span>9:41</span><div class="notch-pill"></div><span>●●● WiFi 🔋</span></div>
+      <div class="phone-app-header">The Vault 🔖</div>
+      <div class="phone-sub">Private · Only you can see this</div>
       <div class="vault-grid">
-        <div class="vault-card purple">
+        <div class="vault-card full">
           <div class="vault-name">All Saves</div>
           <div class="vault-count">34 saves</div>
-          <div class="vault-emojis">⛳ 🍕 🎵</div>
+          <div class="vault-swatches"><span class="swatch" style="background:var(--purple)"></span><span class="swatch" style="background:var(--green)"></span><span class="swatch" style="background:var(--coral)"></span></div>
         </div>
         <div class="vault-card">
-          <div class="vault-name">Golf Tips</div>
+          <div class="vault-name">Golf Tips 🏌️</div>
           <div class="vault-count">12 saves</div>
-          <div class="vault-emojis">⛳ ⛳ 🏌️</div>
+          <div class="vault-swatches"><span class="swatch" style="background:var(--green)"></span><span class="swatch" style="background:var(--purple)"></span><span class="swatch" style="background:var(--coral)"></span></div>
         </div>
-        <div class="vault-new">+ New Collection</div>
+        <div class="vault-card">
+          <div class="vault-name">Recipes 🍕</div>
+          <div class="vault-count">8 saves</div>
+          <div class="vault-swatches"><span class="swatch" style="background:var(--coral)"></span><span class="swatch" style="background:var(--purple)"></span><span class="swatch" style="background:var(--green)"></span></div>
+        </div>
+        <div class="vault-new"><span class="vault-new-plus">+</span>New Collection</div>
       </div>
       <div class="phone-label">Your Vault</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW GROUP FEED WORKS -->
+<section class="workflow-section">
+  <div class="section-eyebrow">The mechanics</div>
+  <h2 class="section-title">How the group feed actually works.</h2>
+  <div class="workflow-card">
+    <div class="workflow-step">
+      <div class="workflow-icon">📱</div>
+      <div class="workflow-kicker">Step 1 · During the day</div>
+      <div class="workflow-title">You live your feed normally</div>
+      <div class="workflow-desc">Like things. Save things. Import a TikTok link. Post a thought. You don't have to do anything different — just use your phone.</div>
+    </div>
+    <div class="workflow-step">
+      <div class="workflow-icon">⚡</div>
+      <div class="workflow-kicker">Step 2 · Every night at 2AM</div>
+      <div class="workflow-title">The Builder runs</div>
+      <div class="workflow-desc">Zovi looks at what every member of your group saved and liked that day. It ranks the best content from each person and builds a combined feed — automatically, while you sleep.</div>
+    </div>
+    <div class="workflow-step">
+      <div class="workflow-icon">☀️</div>
+      <div class="workflow-kicker">Step 3 · Every morning at 7AM</div>
+      <div class="workflow-title">The Drop arrives</div>
+      <div class="workflow-desc">You get a notification: "Your Zovi just dropped." Open the app and the group feed reveals itself — post by post, labeled with who found what. "From Jordan's feed." "Someone in your crew." "Your crew found this 12 days early."</div>
+    </div>
+    <div class="workflow-step">
+      <div class="workflow-icon">💬</div>
+      <div class="workflow-kicker">Step 4 · React with your crew</div>
+      <div class="workflow-title">Your crew reacts — privately</div>
+      <div class="workflow-desc">Every post in the group feed has a private thread only your crew can see. Not public comments — your group's private conversation about what everyone's finding. The living room, not the stage.</div>
     </div>
   </div>
 </section>
@@ -690,8 +785,52 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     <div class="faq-a">Yes. The free tier is genuinely complete — personal feed, group feed, The Drop, Zovi Moments, private threads, DMs, up to 15 groups. <strong>We don't believe in crippling the free experience.</strong> Pro adds more of everything, not access to the basics.</div>
   </div>
   <div class="faq-item">
+    <div class="faq-q">How is Zovi different from Instagram, TikTok, or Facebook Groups?</div>
+    <div class="faq-a">
+      <p>Great question — Zovi combines the best parts of all of them but solves the problem none of them have cracked.</p>
+      <p>Instagram shows you what people chose to post publicly. TikTok shows you what an algorithm thinks you want. Facebook Groups require someone to manually share things.</p>
+      <p><strong>Zovi is different: your group feed is built automatically from what your friends are privately liking and saving</strong> — things they never even thought to share. It's like Instagram Reels for your friend group, but way more intimate. Like a Facebook Group, but nobody has to post anything. Like a group chat, but organized around content instead of conversation.</p>
+      <p>The result is a feed that feels like your friends curated it specifically for you — because they did, without even trying.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do I have to send things to my friends or notify them when I save something?</div>
+    <div class="faq-a">
+      <p>Never. That's the entire point of Zovi.</p>
+      <p>You just use your phone like normal — scroll, like, save, import. Zovi watches those signals silently and builds your group feed from them automatically every night.</p>
+      <p><strong>Your friends never get a notification when you save something. You never get a notification when they save something.</strong> Nobody is performing for each other. Nobody is deciding what's "worth sharing."</p>
+      <p>At 7AM the next morning the group feed drops and you see what everyone was genuinely into the day before — no curation, no pressure, no effort. Just your crew's real taste.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How does the group feed actually work — what shows up in it?</div>
+    <div class="faq-a">
+      <p>Every night at 2AM Zovi runs what we call <strong>The Builder.</strong> It looks at each member of your group and pulls their top activity from that day — posts they liked, things they saved, content they imported, stuff they posted themselves.</p>
+      <p>Each member contributes up to 3 posts per day on the free tier (more with Pro). The Builder ranks them by a combination of how recently they were saved, how much engagement they got, and how relevant they are to your group's collective taste.</p>
+      <p>The result drops at 7AM as "The Drop" — a ranked feed of your crew's best finds from yesterday. <strong>Every post is labeled "From [Name]'s feed" so you always know who found what.</strong> Ghost Mode posts show as "Someone in your crew" for 24 hours before revealing.</p>
+      <p>The more your crew engages — the smarter and more personalized your group feed gets over time.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I be in more than one group?</div>
+    <div class="faq-a">
+      <p><strong>Yes — up to 15 groups on the free tier, unlimited with Pro.</strong> Each group has its own completely separate feed, its own drop time, its own Crew Score, and its own Zovi Moment.</p>
+      <p>You might have one group for your close friends, one for your golf buddies, one for your family. Each one feels like a distinct space — different color, different emoji, different vibe. Each morning you get separate drops for each group you're in.</p>
+      <p>The content you save feeds ALL your groups simultaneously — you don't have to think about which group to share something with. Zovi figures out what's relevant for each group based on the collective taste of its members.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What makes the group feed get better over time?</div>
+    <div class="faq-a">
+      <p>The more your crew uses Zovi, the smarter it gets. Three things make it better:</p>
+      <p><strong>First, taste profiles.</strong> Every like, save, and import updates your interest profile. Over time Zovi knows you love golf and Detroit pizza and indie music — and weights those signals higher in what it surfaces for you.</p>
+      <p><strong>Second, group convergence.</strong> When multiple people in your group independently save the same thing, Zovi promotes it to the top of the next drop. "3 people in Sunday Crew all saved this independently 🔥" — that's the moment you know your crew is really in sync.</p>
+      <p><strong>Third, streaks.</strong> The longer your crew stays active — everyone saving things daily — the higher your group's daily post cap grows. Consistency makes the feed richer.</p>
+    </div>
+  </div>
+  <div class="faq-item">
     <div class="faq-q">Do I have to share anything to use Zovi?</div>
-    <div class="faq-a">No. That's the whole point. <strong>Just use your phone like normal — like and save things you already like.</strong> Zovi takes that signal and builds your group feed from it. Nobody had to forward anything. Nobody had to decide what's worth sharing. It just appears.</div>
+    <div class="faq-a">No. That's the whole point. <strong>Just use your phone like normal — like and save things you already like.</strong> Zovi takes that signal and builds your group feed from it. Nobody had to forward anything. Nobody had to decide what's worth sharing. It just appears. Think of it like this: Instagram is a performance stage — you post what you want the world to see. <strong>Zovi is a living room — it shows you what your friends are genuinely into when nobody's watching.</strong> The intimacy comes from the fact that nobody chose to share anything. It just appeared.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">What does importing from TikTok or Instagram do?</div>
@@ -754,7 +893,6 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 <script>
 // Config
 document.getElementById('hero-counter').textContent = WAITLIST_COUNT + ' people on the waitlist';
-document.getElementById('hero-eyebrow-count').textContent = WAITLIST_COUNT;
 document.getElementById('final-cta-count').textContent = WAITLIST_COUNT;
 document.getElementById('stat-waitlist').textContent = WAITLIST_COUNT;
 document.getElementById('stat-founding').textContent = SLOTS_CLAIMED;
