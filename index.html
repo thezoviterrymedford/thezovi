@@ -27,10 +27,9 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--midnight);color:var(--white);overflow-x:hidden;line-height:1.6}
 
 /* TEXT CLIPPING FIXES */
-h1,h2,h3,h4,h5,h6{line-height:1.2}
-.hero h1,.section-title,.feature-title,.founding-card h2,.final-cta h2{overflow:visible}
-.marquee-item,.hero-pill,.feed-tag,.how-desc{padding:2px 0}
-.marquee-wrap,.phone,.feed-card,.founding-card,.feeds-card{padding-bottom:4px}
+h1,h2,h3{line-height:1.25;padding-bottom:0.15em;overflow:visible}
+.feature-title,.perk-title,.founding-card h2{overflow:visible;line-height:1.25}
+.marquee-wrap,.phone,.feed-card{padding-bottom:4px}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(14,10,46,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -40,18 +39,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{color:var(--gray);font-size:14px;font-weight:500;text-decoration:none;transition:color 0.2s}
 .nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--purple);color:var(--white)!important;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background 0.2s,transform 0.1s}
+.nav-cta{background:var(--purple);color:var(--white)!important;padding:7px 22px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background 0.2s,transform 0.1s;line-height:1.4}
 .nav-cta:hover{background:var(--purple-light);transform:translateY(-1px)}
 @media(max-width:640px){.nav-links{display:none}.nav-cta{font-size:13px;padding:8px 16px}}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative;overflow:visible}
 .hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(108,63,212,0.16) 0%,transparent 65%);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,107,0.06) 0%,transparent 70%);pointer-events:none}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,63,212,0.15);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;font-size:12px;font-weight:600;color:var(--purple-light);letter-spacing:0.06em;text-transform:uppercase}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,63,212,0.15);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;font-size:12px;font-weight:600;color:var(--purple-light);letter-spacing:0.06em;text-transform:uppercase;line-height:1.4}
 .eyebrow-dot{width:6px;height:6px;background:var(--coral);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,6.5vw,78px);font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:20px;max-width:840px}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,6.5vw,78px);font-weight:800;line-height:1.2;padding-bottom:0.2em;overflow:visible;letter-spacing:-0.03em;margin-bottom:20px;max-width:840px}
 .hero h1 em{color:var(--coral);font-style:normal}
 .hero-line{display:block;opacity:0;animation:heroLineIn 0.6s ease forwards}
 .hero-line.coral{color:var(--coral)}
@@ -59,7 +58,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-sub{font-size:clamp(16px,2vw,20px);color:var(--gray);max-width:560px;margin:0 auto 16px;line-height:1.7}
 .hero-sub strong{color:var(--white);font-weight:600}
 .hero-pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
-.hero-pill{display:flex;align-items:center;gap:6px;border-radius:100px;padding:6px 14px;font-size:13px;font-weight:600}
+.hero-pill{display:flex;align-items:center;gap:6px;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;line-height:1.4}
 .pill-green{background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.25);color:var(--green)}
 .pill-purple{background:rgba(108,63,212,0.15);border:1px solid var(--border);color:var(--purple-light)}
 .pill-coral{background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.25);color:var(--coral)}
@@ -76,7 +75,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .form-note{font-size:12px;color:var(--gray);margin-bottom:52px}
 #form-success{display:none;background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.3);border-radius:12px;padding:14px 24px;font-weight:600;font-size:15px;color:#1D9E75;margin-bottom:24px;text-align:center}
 #form-error{display:none;background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.3);border-radius:10px;padding:10px 18px;font-size:13px;color:var(--coral);margin-bottom:10px;text-align:center}
-.how-strip{display:flex;gap:0;background:rgba(108,63,212,0.06);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:680px;width:100%}
+.how-strip{display:flex;gap:0;background:rgba(108,63,212,0.06);border:1px solid var(--border);border-radius:16px;overflow:visible;max-width:680px;width:100%}
 .how-step{flex:1;padding:24px 14px;text-align:center;border-right:1px solid var(--border)}
 .how-step:last-child{border-right:none}
 .how-icon{font-size:22px;margin-bottom:8px}
@@ -85,19 +84,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* SECTION BASICS */
 .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:14px;text-align:center}
-.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;text-align:center;margin-bottom:14px;line-height:1.15;letter-spacing:-0.02em}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;text-align:center;margin-bottom:14px;line-height:1.15;letter-spacing:-0.02em;overflow:visible;padding-bottom:0.15em}
 .section-desc{color:var(--gray);text-align:center;max-width:520px;margin:0 auto 56px;font-size:16px;line-height:1.75}
 
 /* MARQUEE */
 .marquee-wrap{padding:32px 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .marquee-track{display:flex;gap:0;animation:marquee 30s linear infinite;white-space:nowrap}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gray);letter-spacing:0.04em;flex-shrink:0;padding:2px 28px}
+.marquee-item{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gray);letter-spacing:0.04em;flex-shrink:0;line-height:1.5;padding:4px 28px}
 .marquee-item span{color:var(--coral)}
 
 /* TWO FEEDS */
 .two-feeds{padding:96px 24px;max-width:880px;margin:0 auto}
-.feeds-card{border:1px solid var(--border);border-radius:24px;overflow:hidden;background:var(--card-bg)}
+.feeds-card{border:1px solid var(--border);border-radius:24px;overflow:visible;background:var(--card-bg)}
 .feed-row{padding:48px 36px}
 .feed-row+.feed-row{border-top:1px solid var(--border)}
 .feed-row-inner{display:flex;align-items:flex-start;gap:20px}
@@ -106,9 +105,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .feed-num.two{background:rgba(255,107,107,0.15);color:var(--coral)}
 .feed-label-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .feed-label-row h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
-.feed-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.04em}
+.feed-tag{font-size:10px;font-weight:700;padding:7px 10px;border-radius:100px;letter-spacing:0.04em;line-height:1.4}
 .tag-purple{color:var(--purple-light);background:rgba(108,63,212,0.15);border:1px solid var(--border)}
-.tag-coral{color:var(--white);background:rgba(255,107,107,0.55);border:1px solid var(--coral);font-size:11px;padding:5px 14px;font-weight:800}
+.tag-coral{color:var(--white);background:rgba(255,107,107,0.55);border:1px solid var(--coral);font-size:11px;padding:7px 14px;font-weight:800}
 .feed-row p{color:var(--gray);font-size:15px;line-height:1.75}
 .feed-row p strong{color:var(--white)}
 .feed-divider{background:rgba(108,63,212,0.08);padding:12px;text-align:center;font-size:12px;color:var(--purple-light);font-weight:600;letter-spacing:0.04em;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -126,6 +125,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .phone-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700}
 .phone-sub{font-size:9px;color:var(--gray)}
 .phone-avatar{width:26px;height:26px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.phone-tabs{display:flex;gap:10px}
+.phone-tab{font-size:9px;font-weight:700;color:var(--gray)}
+.phone-tab.active{color:var(--white);border-bottom:2px solid var(--purple-light);padding-bottom:2px}
+.streak-badge{background:rgba(255,107,107,0.15);color:var(--coral);font-size:7px;font-weight:800;padding:2px 6px;border-radius:100px;margin-left:4px;white-space:nowrap}
+.drop-bar{background:rgba(108,63,212,0.25);color:var(--purple-light);font-size:9px;font-weight:800;letter-spacing:0.06em;text-align:center;padding:7px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.trend-badge{display:inline-block;margin-top:4px;background:rgba(255,107,107,0.18);border:1px solid rgba(255,107,107,0.35);color:var(--coral);font-size:7px;font-weight:800;padding:3px 6px;border-radius:100px;line-height:1.4}
+.vault-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px}
+.vault-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:9px;padding:8px}
+.vault-card.purple{border-color:var(--purple-light)}
+.vault-name{font-size:9px;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:2px}
+.vault-count{font-size:7px;color:var(--gray);margin-bottom:6px}
+.vault-emojis{font-size:12px;letter-spacing:2px}
+.vault-new{grid-column:1/3;text-align:center;font-size:9px;color:var(--purple-light);font-weight:700;border:1px dashed var(--border);border-radius:9px;padding:8px;line-height:1.4}
 .feed-card{margin:8px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid var(--border);overflow:hidden}
 .feed-thumb{height:72px;display:flex;align-items:center;justify-content:center;font-size:26px}
 .feed-meta{padding:7px 9px}
@@ -134,11 +146,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .feed-actions{display:flex;gap:10px;padding:5px 9px 7px;border-top:1px solid var(--border)}
 .feed-action{font-size:8px;color:var(--gray)}
 .phone-label{text-align:center;padding:7px;font-size:9px;font-weight:700;color:var(--purple-light);letter-spacing:0.07em;text-transform:uppercase;border-top:1px solid var(--border)}
-.thread-wrap{margin:8px;border-radius:10px;background:rgba(108,63,212,0.12);border:1px solid var(--border);padding:8px}
-.thread-header{font-size:8px;font-weight:700;color:var(--purple-light);margin-bottom:7px}
-.thread-msg{background:rgba(255,255,255,0.05);border-radius:7px;padding:6px 8px;margin-bottom:4px}
-.thread-user{font-size:7px;color:var(--coral);font-weight:700;margin-bottom:1px}
-.thread-text{font-size:8px;color:var(--white);line-height:1.35}
 
 /* FEATURES GRID */
 .features-section{padding:96px 24px;max-width:1080px;margin:0 auto}
@@ -162,7 +169,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pro-section{padding:96px 24px;max-width:720px;margin:0 auto}
 .pro-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0}
 @media(max-width:640px){.pro-grid{grid-template-columns:1fr}}
-.pro-col{border-radius:20px;overflow:hidden}
+.pro-col{border-radius:20px;overflow:visible}
 .pro-col-header{padding:20px 24px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
 .pro-col-header.free{background:rgba(255,255,255,0.05);border:1px solid var(--border-light);border-bottom:none;border-radius:20px 20px 0 0;color:var(--gray)}
 .pro-col-header.pro{background:linear-gradient(135deg,rgba(108,63,212,0.4),rgba(255,107,107,0.15));border:1px solid var(--purple);border-bottom:none;border-radius:20px 20px 0 0;color:var(--white)}
@@ -180,7 +187,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* FOUNDING */
 .founding-section{padding:96px 24px;display:flex;flex-direction:column;align-items:center}
-.founding-card{max-width:680px;width:100%;background:linear-gradient(135deg,rgba(108,63,212,0.18) 0%,rgba(255,107,107,0.06) 100%);border:1px solid var(--purple);border-radius:24px;padding:44px;position:relative;overflow:hidden;text-align:center}
+.founding-card{max-width:680px;width:100%;background:linear-gradient(135deg,rgba(108,63,212,0.18) 0%,rgba(255,107,107,0.06) 100%);border:1px solid var(--purple);border-radius:24px;padding:44px;position:relative;overflow:visible;text-align:center}
 .founding-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,107,107,0.08),transparent 70%);pointer-events:none}
 .founding-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,107,0.15);border:1px solid rgba(255,107,107,0.3);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:700;color:var(--coral);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px}
 .founding-card h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:10px;letter-spacing:-0.02em}
@@ -267,8 +274,8 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="logo-mark">Z<sup style="font-size:0.4em;font-weight:400;vertical-align:super;line-height:0;letter-spacing:0;">™</sup><div class="logo-dot"></div></div>
-    Zovi
+    <div class="logo-mark">Z<div class="logo-dot"></div></div>
+    Zovi<sup style="font-size:0.4em;font-weight:400;vertical-align:super;line-height:0;letter-spacing:0">™</sup>
   </a>
   <div class="nav-links">
     <a href="#how">How it works</a>
@@ -277,12 +284,12 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     <a href="#pro">Pro</a>
     <a href="#founding">Founding</a>
   </div>
-  <a href="#founding" class="nav-cta">Get founding access</a>
+  <a href="#founding" class="nav-cta">Get early access</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Beta launching soon &middot; Join the waitlist</div>
+  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Beta launching soon &middot; <span id="hero-eyebrow-count">73</span> people already in</div>
   <h1>
     <span class="hero-line" style="animation-delay:0s">Your crew saves things</span>
     <span class="hero-line" style="animation-delay:0.4s">every day.</span>
@@ -418,57 +425,75 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 <section class="mockup-section">
   <div class="section-eyebrow">The product</div>
   <h2 class="section-title">See it in action.</h2>
-  <p class="section-desc">Your personal feed. Your group drop. Your crew's private thread. Three screens, one experience you won't find anywhere else.</p>
+  <p class="section-desc">Your personal feed. Your group drop. Your private Vault. Three screens, one experience you won't find anywhere else.</p>
   <div class="phones">
     <div class="phone">
       <div class="phone-notch"><div class="notch-bar"></div></div>
       <div class="phone-header">
-        <div><div class="phone-title">For You</div><div class="phone-sub">Building your taste</div></div>
+        <div class="phone-tabs">
+          <span class="phone-tab active">Friends</span>
+          <span class="phone-tab">For You</span>
+        </div>
         <div class="phone-avatar">T</div>
       </div>
       <div class="feed-card">
         <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">⛳</div>
-        <div class="feed-meta"><div class="feed-from">SAVED · GOLF</div><div class="feed-desc">The most insane bunker shot you'll ever see</div></div>
-        <div class="feed-actions"><span class="feed-action">❤️ 12k</span><span class="feed-action">💬 341</span></div>
+        <div class="feed-meta"><div class="feed-from">LIKED · GOLF</div><div class="feed-desc">That 40ft putt from last weekend 🤯</div></div>
+        <div class="feed-actions"><span class="feed-action" style="color:var(--coral)">❤️ Like</span><span class="feed-action">🔖 Save</span><span class="feed-action">💬 2</span></div>
       </div>
       <div class="feed-card">
         <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#1a3d1a)">🍕</div>
-        <div class="feed-meta"><div class="feed-from">SAVED · FOOD</div><div class="feed-desc">This Detroit-style pizza recipe 🤯</div></div>
-        <div class="feed-actions"><span class="feed-action">❤️ 8.2k</span><span class="feed-action">🔖 Save</span></div>
+        <div class="feed-meta"><div class="feed-from">SAVED · FOOD</div><div class="feed-desc">Detroit-style pizza — making this weekend</div></div>
+        <div class="feed-actions"><span class="feed-action">❤️</span><span class="feed-action" style="color:var(--purple-light)">🔖 Save</span><span class="feed-action">💬 1</span></div>
       </div>
       <div class="phone-label">Personal Feed</div>
     </div>
     <div class="phone center">
       <div class="phone-notch"><div class="notch-bar"></div></div>
       <div class="phone-header">
-        <div><div class="phone-title">Sunday Crew 🔥 23d</div><div class="phone-sub">5 members · Drop arrived</div></div>
+        <div><div class="phone-title">Sunday Crew 🔥<span class="streak-badge">23 days</span></div><div class="phone-sub">Drop arrived · 5 members</div></div>
       </div>
+      <div class="drop-bar">Today's Drop ☀️</div>
       <div class="feed-card">
-        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">⛳</div>
-        <div class="feed-meta"><div class="feed-from">FROM JORDAN'S FEED · GOLF</div><div class="feed-desc">Insane 40ft putt at Augusta — must watch</div></div>
-        <div class="feed-actions"><span class="feed-action">🔥 14</span><span class="feed-action">💬 3 crew</span></div>
+        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2a1f4d);opacity:0.75">👻</div>
+        <div class="feed-meta"><div class="feed-from">SOMEONE IN YOUR CREW · GOLF</div><div class="feed-desc">Someone saved something for you 👀</div></div>
+        <div class="feed-actions"><span class="feed-action" style="color:var(--purple-light);font-weight:700">Reveals in 6h</span></div>
       </div>
       <div class="feed-card">
         <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#1a3d1a)">🍕</div>
-        <div class="feed-meta"><div class="feed-from">FROM MARCUS'S FEED · FOOD</div><div class="feed-desc">Detroit pizza recipe — everyone needs this</div></div>
-        <div class="feed-actions"><span class="feed-action">❤️ 9</span><span class="feed-action">💬 2 crew</span></div>
+        <div class="feed-meta"><div class="feed-from">FROM JORDAN · FOOD</div><div class="feed-desc">Detroit pizza recipe — everyone needs this</div></div>
+        <div class="feed-actions"><span class="feed-action">🔥 Hot</span><span class="feed-action">💬 3 crew</span></div>
       </div>
-      <div style="margin:6px 8px;padding:6px 9px;background:rgba(108,63,212,0.12);border-radius:8px;border:1px solid var(--border);font-size:8px;color:var(--purple-light);font-weight:600;">👻 Someone in your crew saved this</div>
+      <div class="feed-card">
+        <div class="feed-thumb" style="background:linear-gradient(135deg,#1a1540,#2d1b6e)">🎵</div>
+        <div class="feed-meta">
+          <div class="feed-from">FROM TYLER · MUSIC</div>
+          <div class="feed-desc">This song is about to blow up</div>
+          <div class="trend-badge">🏆 Your crew found this 12 days early</div>
+        </div>
+        <div class="feed-actions"><span class="feed-action">❤️ 6</span><span class="feed-action">💬 1 crew</span></div>
+      </div>
       <div class="phone-label">Group Drop ☀️</div>
     </div>
     <div class="phone">
       <div class="phone-notch"><div class="notch-bar"></div></div>
       <div class="phone-header">
-        <div><div class="phone-title">Sunday Crew</div><div class="phone-sub">Private thread 🔒</div></div>
-        <div style="font-size:9px;color:var(--coral);font-weight:700">CREW ONLY</div>
+        <div><div class="phone-title">The Vault 🔖</div><div class="phone-sub">Private · Only you</div></div>
       </div>
-      <div class="thread-wrap">
-        <div class="thread-header">🔒 Your crew — nobody else sees this</div>
-        <div class="thread-msg"><div class="thread-user">Marcus</div><div class="thread-text">that putt 😭 we need to go to Augusta</div></div>
-        <div class="thread-msg"><div class="thread-user">Jordan</div><div class="thread-text">making that pizza this weekend, who's in?</div></div>
-        <div class="thread-msg"><div class="thread-user">Tyler</div><div class="thread-text">I'm in 🙋 bring the good cheese</div></div>
+      <div class="vault-grid">
+        <div class="vault-card purple">
+          <div class="vault-name">All Saves</div>
+          <div class="vault-count">34 saves</div>
+          <div class="vault-emojis">⛳ 🍕 🎵</div>
+        </div>
+        <div class="vault-card">
+          <div class="vault-name">Golf Tips</div>
+          <div class="vault-count">12 saves</div>
+          <div class="vault-emojis">⛳ ⛳ 🏌️</div>
+        </div>
+        <div class="vault-new">+ New Collection</div>
       </div>
-      <div class="phone-label">Private Thread</div>
+      <div class="phone-label">Your Vault</div>
     </div>
   </div>
 </section>
@@ -652,7 +677,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
       <div class="slots-bar"><div class="slots-fill" id="slots-fill" style="width:4%"></div></div>
     </div>
     <a href="#" id="founding-btn" class="founding-btn">Claim my founding member slot →</a>
-    <p class="founding-guarantee">Refundable within 30 days if Zovi doesn't launch &nbsp;·&nbsp; Secure checkout via Stripe</p>
+    <p class="founding-guarantee">Secure checkout via Stripe &nbsp;·&nbsp; Questions? Email hello@thezovi.com</p>
   </div>
 </section>
 
@@ -696,7 +721,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 
 <!-- FINAL CTA -->
 <section class="final-cta">
-  <h2>Your crew is saving things right now.<br>You just can't see it.</h2>
+  <h2><span id="final-cta-count">73</span> people are already waiting.<br>Don't miss the drop.</h2>
   <p>Join the waitlist and be among the first to see what your people actually love — automatically, every morning.</p>
   <form action="https://formspree.io/f/mdavbyqk" method="POST" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">
     <input type="email" name="email" placeholder="Enter your email" required style="flex:1;min-width:200px;padding:14px 18px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--white);font-size:15px;font-family:'Inter',sans-serif;outline:none">
@@ -729,6 +754,8 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
 <script>
 // Config
 document.getElementById('hero-counter').textContent = WAITLIST_COUNT + ' people on the waitlist';
+document.getElementById('hero-eyebrow-count').textContent = WAITLIST_COUNT;
+document.getElementById('final-cta-count').textContent = WAITLIST_COUNT;
 document.getElementById('stat-waitlist').textContent = WAITLIST_COUNT;
 document.getElementById('stat-founding').textContent = SLOTS_CLAIMED;
 const remaining = SLOTS_TOTAL - SLOTS_CLAIMED;
