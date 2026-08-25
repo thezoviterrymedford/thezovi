@@ -189,6 +189,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .feature-desc{font-size:13px;color:var(--gray);line-height:1.65}
 .feature-new{display:inline-block;font-size:9px;font-weight:700;color:var(--coral);background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.25);border-radius:100px;padding:2px 8px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 
+/* PATENT */
+.patent-section{padding:96px 24px;max-width:1080px;margin:0 auto}
+.patent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:36px}
+.patent-card{background:var(--card-bg2);border:1px solid var(--purple);border-radius:16px;padding:28px}
+.patent-icon{width:42px;height:42px;border-radius:11px;background:rgba(108,63,212,0.18);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px}
+.patent-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:7px}
+.patent-body{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.patent-label{font-size:11px;font-weight:700;color:var(--purple-light);background:rgba(108,63,212,0.15);border:1px solid var(--border);border-radius:100px;padding:5px 12px;display:inline-block;letter-spacing:0.04em}
+.patent-coverage{background:rgba(108,63,212,0.08);border:1px solid var(--border);border-radius:16px;padding:28px 32px;color:var(--gray);font-size:14px;line-height:1.75;text-align:center;max-width:800px;margin:0 auto}
+.patent-legal{text-align:center;font-size:11px;color:var(--gray);opacity:0.7;line-height:1.7;margin-top:24px;max-width:700px;margin-left:auto;margin-right:auto}
+
 /* STATS */
 .stats-band{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:48px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stat-item{text-align:center}
@@ -269,6 +280,9 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;flex-wr
 .footer-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color 0.2s}
 .footer-links a:hover{color:var(--white)}
 .footer-legal{font-size:12px;color:var(--gray);width:100%;border-top:1px solid var(--border);padding-top:20px;margin-top:4px}
+.footer-ip{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12px;color:var(--gray);text-align:right}
+@media(max-width:640px){.footer-ip{align-items:flex-start;text-align:left}}
+.footer-bottom-legal{font-size:11px;color:var(--gray);opacity:0.65;width:100%;text-align:center;border-top:1px solid var(--border);padding-top:16px;margin-top:16px;line-height:1.7}
 
 /* TOAST */
 .toast{position:fixed;bottom:24px;right:24px;background:var(--card-bg2);border:1px solid var(--purple);border-radius:12px;padding:14px 20px;font-size:14px;color:var(--white);z-index:999;transform:translateY(100px);opacity:0;transition:all 0.3s;max-width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
@@ -315,6 +329,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     <a href="#features">Moments</a>
     <a href="#pro">Pro</a>
     <a href="#founding">Founding</a>
+    <a href="/patent.html">Patent</a>
   </div>
   <a href="#founding" class="nav-cta">Get early access</a>
 </nav>
@@ -580,7 +595,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
       <div class="workflow-icon">⚡</div>
       <div class="workflow-kicker">Step 2 · Every night at 2AM</div>
       <div class="workflow-title">The Builder runs</div>
-      <div class="workflow-desc">Zovi looks at what every member of your group saved and liked that day. It ranks the best content from each person and builds a combined feed — automatically, while you sleep.</div>
+      <div class="workflow-desc">Zovi looks at every member's engagement signals — likes, saves, views — and runs them through their individual taste algorithm. It ranks the best content from each person and builds a combined feed — automatically, while you sleep.</div>
     </div>
     <div class="workflow-step">
       <div class="workflow-icon">☀️</div>
@@ -625,7 +640,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     <div class="feature-card">
       <div class="feature-icon">🏆</div>
       <div class="feature-title">Trendsetter Badge</div>
-      <div class="feature-desc">When content your crew saved blows up publicly, Zovi tells you. "Your crew found this 14 days before it went viral." You were early. Your taste called it. Permanent badge on the post.</div>
+      <div class="feature-desc">When content your crew engaged with early blows up publicly, Zovi tells you. "Your crew found this 14 days before it went viral." You were early. Your engagement signals and taste algorithm called it. Permanent badge on the post.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔖</div>
@@ -650,7 +665,7 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     <div class="feature-card">
       <div class="feature-icon">🔥</div>
       <div class="feature-title">Crew Score & streaks</div>
-      <div class="feature-desc">Your group earns a chemistry score based on how often you independently save the same things. Daily streaks, milestone celebrations, and a crew score that reflects how in sync your tastes actually are.</div>
+      <div class="feature-desc">Your group earns a chemistry score based on how often your engagement signals independently converge on the same things. Daily streaks, milestone celebrations, and a crew score that reflects how in sync your tastes actually are.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📱</div>
@@ -668,6 +683,35 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
       <div class="feature-desc">A Discover tab surfaces content matched to your taste profile. Follow public accounts, build your following, and grow beyond your group while keeping your crew feed private.</div>
     </div>
   </div>
+</section>
+
+<!-- PATENT PENDING -->
+<section id="patent" class="patent-section">
+  <div class="section-eyebrow">Intellectual property</div>
+  <h2 class="section-title">Protected Technology</h2>
+  <p class="section-desc">The Zovi's core technology is protected by US patent pending status.</p>
+  <div class="patent-grid">
+    <div class="patent-card">
+      <div class="patent-icon">🔒</div>
+      <div class="patent-title">Patent Pending</div>
+      <div class="patent-body">The automated group feed generation system powering The Drop is protected under US Patent Application #64/139,191. Filed August 23, 2026.</div>
+      <div class="patent-label">USPTO Application #64/139,191</div>
+    </div>
+    <div class="patent-card">
+      <div class="patent-icon">™</div>
+      <div class="patent-title">Trademark Pending</div>
+      <div class="patent-body">ZOVI™ is the subject of a pending US trademark application (Serial #99885451) owned by Circl Technologies LLC. Filed June 2026.</div>
+      <div class="patent-label">USPTO Serial #99885451</div>
+    </div>
+    <div class="patent-card">
+      <div class="patent-icon">⚡</div>
+      <div class="patent-title">Novel Technology</div>
+      <div class="patent-body">The only platform that automatically builds a shared group feed for 3 or more users from individual engagement signals AND taste algorithms — with simultaneous morning revelation.</div>
+      <div class="patent-label">First of its kind</div>
+    </div>
+  </div>
+  <p class="patent-coverage">The Zovi's patent covers automated group feed generation for groups of three or more users from individual engagement signals and algorithmic scoring — including likes, saves, views, view duration, and taste profile weighting — with scheduled simultaneous revelation to all group members. Any platform building a similar automated group feed for three or more users is subject to this patent.</p>
+  <p class="patent-legal">Patent Pending. US Application #64/139,191. ZOVI™ Serial #99885451. © 2026 Circl Technologies LLC. All rights reserved.</p>
 </section>
 
 <!-- PRO TABLE -->
@@ -936,16 +980,17 @@ const STRIPE_LINK = "https://buy.stripe.com/6oUeVe1BWbjEavydineUU03";
     Zovi<sup style="font-size:0.4em;font-weight:400;vertical-align:super;line-height:0;letter-spacing:0">™</sup>
   </a>
   <div class="footer-links">
-    <a href="#how">How it works</a>
-    <a href="#features">Features</a>
-    <a href="#pro">Pro</a>
-    <a href="#founding">Founding</a>
+    <a href="/">Home</a>
     <a href="/privacy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Service</a>
+    <a href="/terms.html">Terms</a>
     <a href="/sms-terms.html">SMS Terms</a>
-    <a href="mailto:hello@thezovi.com">Contact</a>
+  </div>
+  <div class="footer-ip">
+    <span>Patent Pending — USPTO #64/139,191</span>
+    <span>ZOVI™ Trademark — Serial #99885451</span>
   </div>
   <div class="footer-legal">© <span id="year"></span> Circl Technologies LLC &nbsp;·&nbsp; Montgomery, TX &nbsp;·&nbsp; <a href="mailto:hello@thezovi.com" style="color:var(--gray);text-decoration:none">hello@thezovi.com</a> &nbsp;·&nbsp; <a href="https://thezovi.com" style="color:var(--gray);text-decoration:none">thezovi.com</a></div>
+  <div class="footer-bottom-legal">Patent Pending. US Application #64/139,191. ZOVI™ is a trademark of Circl Technologies LLC (Serial #99885451). The automated group feed generation technology powering The Zovi is protected under US patent law. © 2026 Circl Technologies LLC. All rights reserved.</div>
 </footer>
 
 <div class="toast" id="toast"></div>

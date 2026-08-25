@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Technology — Zovi™</title>
+<meta name="description" content="How The Drop works and why it's protected. The Zovi's automated group feed generation technology is Patent Pending (US Application #64/139,191).">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --midnight:#0E0A2E;--purple:#6C3FD4;--purple-light:#8B5CF6;
+  --coral:#FF6B6B;--coral-light:#FF8E8E;--white:#FFFFFF;
+  --gray:#A0A0B8;--card-bg:#1A1540;--border:rgba(108,63,212,0.25);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--midnight);color:var(--white);overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(14,10,46,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+.logo-mark{width:36px;height:36px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;position:relative}
+.logo-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--coral);border-radius:50%}
+.nav-cta{background:var(--coral);color:var(--white);padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.1s}
+.nav-cta:hover{background:var(--coral-light);transform:translateY(-1px)}
+
+/* PAGE HEADER */
+.policy-hero{padding:150px 24px 60px;text-align:center;max-width:800px;margin:0 auto}
+.policy-hero .section-label{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
+.policy-hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px}
+.policy-hero p{color:var(--gray);font-size:15px}
+
+/* POLICY BODY */
+.policy-wrap{max-width:800px;margin:0 auto;padding:0 24px 100px}
+.policy-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:44px}
+.policy-section{padding:26px 0;border-bottom:1px solid var(--border)}
+.policy-section:last-child{border-bottom:none;padding-bottom:0}
+.policy-section:first-child{padding-top:0}
+.policy-section h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:14px}
+.policy-section h3{font-size:14px;font-weight:700;color:var(--purple-light);letter-spacing:0.04em;margin:18px 0 8px}
+.policy-section p{color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:10px}
+.policy-section ul{list-style:none;margin:0 0 4px}
+.policy-section li{color:var(--gray);font-size:15px;line-height:1.75;padding-left:20px;position:relative;margin-bottom:6px}
+.policy-section li::before{content:'✓';position:absolute;left:0;color:var(--coral)}
+.policy-section strong{color:var(--white);font-weight:600}
+.policy-section a{color:var(--purple-light);text-decoration:none;border-bottom:1px solid rgba(139,92,246,0.4)}
+.policy-section a:hover{color:var(--coral)}
+.contact-box{background:rgba(108,63,212,0.12);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:8px}
+.contact-box p{margin-bottom:4px}
+
+/* FOOTER */
+footer{padding:40px 24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;max-width:1100px;margin:0 auto}
+.footer-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--white)}
+.footer-note{font-size:13px;color:var(--gray)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--gray);text-decoration:none}
+.footer-links a:hover{color:var(--white)}
+.footer-bottom-legal{font-size:11px;color:var(--gray);opacity:0.65;width:100%;text-align:center;border-top:1px solid var(--border);padding-top:16px;margin-top:8px;line-height:1.7}
+
+@media(max-width:640px){
+  nav{padding:14px 20px}
+  .policy-hero{padding:130px 20px 40px}
+  .policy-card{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">Z<div class="logo-dot"></div></div>
+    Zovi<sup style="font-size:0.45em;font-weight:400;vertical-align:super;letter-spacing:0;line-height:0;">™</sup>
+  </a>
+  <a href="/#founding" class="nav-cta">Get founding access</a>
+</nav>
+
+<section class="policy-hero">
+  <div class="section-label">Intellectual Property</div>
+  <h1>Our Technology</h1>
+  <p>How The Drop works — and why it's protected</p>
+</section>
+
+<div class="policy-wrap">
+  <div class="policy-card">
+
+    <div class="policy-section">
+      <h2>The Innovation</h2>
+      <p>The Zovi invented a new way for groups of three or more people to share content without sharing anything.</p>
+      <p>Every like, save, view, and interaction you make privately feeds into a personal taste profile. Every night, Zovi's algorithm combines your crew's taste profiles and engagement signals into one ranked shared feed. Every morning at 7AM — it reveals to everyone simultaneously.</p>
+      <p>No manual sharing. No performance pressure. Just your crew's authentic taste, automatically compiled and revealed together.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>What's Protected</h2>
+      <p>The following technology is protected under US Patent Application #64/139,191, filed August 23, 2026:</p>
+      <ul>
+        <li>Automated group feed generation for three or more users from individual private engagement signals</li>
+        <li>Algorithmic scoring combining engagement velocity, taste profiles, recency, convergence bonuses, and diversity balancing</li>
+        <li>Scheduled simultaneous revelation to all group members at a predetermined time</li>
+        <li>Anonymous contribution with timed identity revelation (Ghost Mode)</li>
+        <li>Pre-viral content early discovery recognition (Trendsetter Badge)</li>
+        <li>Simultaneous coordinated group media capture (Zovi Moment)</li>
+        <li>Group chemistry scoring from independent engagement convergence</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Why It Matters</h2>
+      <p>Instagram Blend works between two people using algorithmic prediction. TikTok's group features require manual sharing.</p>
+      <p>The Zovi is different. We use both authentic engagement signals AND sophisticated algorithms — for groups of any size — with a daily reveal ritual that no other platform has.</p>
+      <p>This combination is novel, non-obvious, and now protected under US patent law.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Trademark</h2>
+      <p>ZOVI™ is the subject of a pending US trademark application owned by Circl Technologies LLC (Serial #99885451, filed June 2026).</p>
+      <p>The Zovi name, brand, and identity are protected under US trademark law.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Contact</h2>
+      <p>For licensing inquiries contact:</p>
+      <div class="contact-box">
+        <p><strong>Circl Technologies LLC</strong></p>
+        <p>Email: <a href="mailto:hello@thezovi.com">hello@thezovi.com</a></p>
+        <p>18752 Palm Beach Blvd</p>
+        <p>Montgomery, TX 77356</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Zovi<sup style="font-size:0.45em;font-weight:400;vertical-align:super;letter-spacing:0;line-height:0;">™</sup></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/sms-terms.html">SMS Terms</a>
+  </div>
+  <div class="footer-note">© 2026 Circl Technologies LLC · thezovi.com · hello@thezovi.com</div>
+  <div class="footer-bottom-legal">Patent Pending — US Application #64/139,191 | ZOVI™ Serial #99885451 | © 2026 Circl Technologies LLC</div>
+</footer>
+
+</body>
+</html>
